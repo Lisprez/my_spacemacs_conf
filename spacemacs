@@ -314,6 +314,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
     '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
       ("org-cn"   . "http://elpa.emacs-china.org/org/")
       ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+  
+  ;; Display Visited File's Path in the Frame Title
+  (setq frame-title-format
+     '((:eval (if (buffer-file-name)
+                  (abbreviate-file-name (buffer-file-name))
+                  "%b"))))
   )
 
 (defun dotspacemacs/user-config ()
