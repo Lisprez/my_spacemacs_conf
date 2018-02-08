@@ -48,6 +48,7 @@ values."
      emacs-lisp
      common-lisp
      c-c++
+     ycmd
      ;;nim
      evil-commentary
      ;; git
@@ -365,6 +366,20 @@ you should place your code here."
   (setq powerline-default-separator 'arrow)
   (global-linum-mode)
   (global-hl-line-mode -1)
+  ;; support emacs -daemon
+  (setq-default dotspacemacs-persistent-server t)
+
+  ;; ycmd
+  (require 'ycmd)
+  (add-hook 'c++-mode-hook 'ycmd-mode)
+  (setq ycmd-server-command '("python2" "/home/shanlin/.vim/bundle/YouCompleteMe/third_party/ycmd/ycmd"))
+  ;; project specific ycm_extra_conf
+  ;;(setq ycmd-extra-conf-whitelist '("~/work/gitlab/gitlab.com/mystudy/mongodb/code/*"))
+
+  (require 'company-ycmd)
+  (company-ycmd-setup)
+  (setq ycmd-extra-conf-whitelist '("~/*"))
+  (setq ycmd-force-semantic-completion t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
